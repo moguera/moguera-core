@@ -16,8 +16,16 @@ Image.create({ name: "mogera" })
 
 role = Role.create({ name: "admin" })
 
-Author.create({ name: "user_01", role_id: role.id })
-Author.create({ name: "user_02", role_id: role.id })
+Author.create({ name: "user_01", describe: "human", role_id: role.id })
+Author.create({ name: "user_02", describe: "uma", role_id: role.id })
+
+step = Step.new({ body: "step_01", order: 2 })
+step.step_images_attributes = [{ image_id: 1 }]
+step.save
+
+step = Step.new({ body: "step_02", order: 1 })
+step.step_images_attributes = [{ image_id: 2 }]
+step.save
 
 post = Post.new({
                     title: "hoge",
@@ -29,4 +37,5 @@ post = Post.new({
 post.taggings_attributes = [{ tag_id: 1 }, { tag_id: 2 }]
 post.post_images_attributes = [{ image_id: 1 }, { image_id: 2 }]
 post.post_authors_attributes = [{ author_id: 1 }, { author_id: 2 }]
+post.post_steps_attributes = [{ step_id: 1 }, { step_id: 2 }]
 post.save

@@ -13,4 +13,8 @@ class Post < ActiveRecord::Base
   has_many :post_authors
   has_many :authors, :through => :post_authors
   accepts_nested_attributes_for :post_authors
+
+  has_many :post_steps
+  has_many :steps, :through => :post_steps
+  accepts_nested_attributes_for :post_steps
 end

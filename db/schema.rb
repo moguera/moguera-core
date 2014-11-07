@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809171513) do
+ActiveRecord::Schema.define(version: 20141107165543) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 20140809171513) do
   add_index "post_images", ["image_id"], name: "index_post_images_on_image_id"
   add_index "post_images", ["post_id"], name: "index_post_images_on_post_id"
 
+  create_table "post_steps", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "step_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_steps", ["post_id"], name: "index_post_steps_on_post_id"
+  add_index "post_steps", ["step_id"], name: "index_post_steps_on_step_id"
+
   create_table "posts", force: true do |t|
     t.string   "title"
     t.string   "subtitle"
@@ -70,6 +80,23 @@ ActiveRecord::Schema.define(version: 20140809171513) do
 
   create_table "roles", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "step_images", force: true do |t|
+    t.integer  "step_id"
+    t.integer  "image_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "step_images", ["image_id"], name: "index_step_images_on_image_id"
+  add_index "step_images", ["step_id"], name: "index_step_images_on_step_id"
+
+  create_table "steps", force: true do |t|
+    t.text     "body"
+    t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
