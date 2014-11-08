@@ -1,6 +1,6 @@
 class Step < ActiveRecord::Base
-  has_many :posts, :through => :post_steps
-  has_many :post_steps
+  has_one :post_step
+  has_one :post, :through => :post_step
 
   has_many :step_images
   has_many :images, :through => :step_images
