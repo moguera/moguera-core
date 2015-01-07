@@ -13,16 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141107165543) do
 
-  create_table "authors", force: true do |t|
-    t.string   "name"
-    t.integer  "role_id"
-    t.text     "describe"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "authors", ["role_id"], name: "index_authors_on_role_id"
-
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -36,16 +26,6 @@ ActiveRecord::Schema.define(version: 20141107165543) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "post_authors", force: true do |t|
-    t.integer  "post_id"
-    t.integer  "author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "post_authors", ["author_id"], name: "index_post_authors_on_author_id"
-  add_index "post_authors", ["post_id"], name: "index_post_authors_on_post_id"
 
   create_table "post_images", force: true do |t|
     t.integer  "post_id"
@@ -66,6 +46,16 @@ ActiveRecord::Schema.define(version: 20141107165543) do
 
   add_index "post_steps", ["post_id"], name: "index_post_steps_on_post_id"
   add_index "post_steps", ["step_id"], name: "index_post_steps_on_step_id"
+
+  create_table "post_users", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_users", ["post_id"], name: "index_post_users_on_post_id"
+  add_index "post_users", ["user_id"], name: "index_post_users_on_user_id"
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -116,5 +106,20 @@ ActiveRecord::Schema.define(version: 20141107165543) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "name",                      null: false
+    t.string   "email",                     null: false
+    t.string   "password",                  null: false
+    t.string   "salt",                      null: false
+    t.boolean  "dm",         default: true
+    t.boolean  "notify",     default: true
+    t.integer  "role_id"
+    t.text     "describe"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end
