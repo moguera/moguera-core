@@ -116,10 +116,12 @@ ActiveRecord::Schema.define(version: 20141107165543) do
     t.boolean  "notify",     default: true
     t.integer  "role_id"
     t.text     "describe"
+    t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "users", ["image_id"], name: "index_users_on_image_id"
   add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end

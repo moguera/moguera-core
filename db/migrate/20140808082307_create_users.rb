@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :dm, :notify, default: true
       t.references :role, index: true
       t.text :describe
+      t.references :image, index: true
 
       t.timestamps
     end

@@ -11,13 +11,14 @@ category = Category.create({ name: "test" })
 Tag.create({ name: "apple" })
 Tag.create({ name: "orange" })
 
-Image.create({ name: "pikaso" })
-Image.create({ name: "mogera" })
 
 role = Role.create({ name: "admin" })
+image = Image.create({ name: "pikaso" })
+User.create({ name: "user_01", password: "pass_01", salt: "salt_01", describe: "human", role_id: role.id, image_id: image.id, email: "test01@example.com" })
 
-User.create({ name: "user_01", password: "pass_01", salt: "salt_01", describe: "human", role_id: role.id, email: "test01@example.com" })
-User.create({ name: "user_02", password: "pass_02", salt: "salt_02", describe: "uma", role_id: role.id, email: "test01@example.com"  })
+role = Role.create({ name: "user" })
+image = Image.create({ name: "mogera" })
+User.create({ name: "user_02", password: "pass_02", salt: "salt_02", describe: "uma", role_id: role.id, image_id: image.id, email: "test01@example.com"  })
 
 step = Step.new({ body: "step_01", order: 2 })
 step.step_images_attributes = [{ image_id: 1 }]
